@@ -30,18 +30,21 @@ import java.util.Arrays;
 public class Knapsack2 {
 
     // TC = (n*c) , sc = (n*c)
-    public static int profit(int i, int[] price, int[] weight, int C, int[][] dp){
-        if(i == weight.length) return 0;
+    public static int maxProfit(int i, int[] val, int[] wt, int W, int[][] dp){
+        if(i == wt.length) return 0;
 
-        if(dp[i][C] != -1) return dp[i][C];
+        if(dp[i][W] != -1) return dp[i][W];
 
-        int skip = profit(i+1, price, weight, C, dp);
-        if(weight[i] > C) return dp[i][C] = skip;
+        int take = Integer.MIN_VALUE;
+        if(wt[i] <= W)
+            take = val[i] + maxProfit(i+1, val, wt,W-wt[i], dp);
 
-        int pick = price[i] + profit(i+1, price, weight, C-weight[i], dp);
+        int skip = maxProfit(i+1, val, wt, W, dp);
 
-        return dp[i][C] = Math.max(pick, skip);
+
+        return dp[i][W] = Math.max(take, skip);
     }
+
 
 
     public static void main(String[] args) {
@@ -56,6 +59,6 @@ public class Knapsack2 {
             Arrays.fill(dp[i], -1);
         }
 
-        System.out.println(profit(0, price, weight, c, dp));
+        System.out.println(maxProfit(0, price, weight, c, dp));
     }
 }
