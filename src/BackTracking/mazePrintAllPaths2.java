@@ -1,6 +1,6 @@
 package BackTracking;
 
-public class mazePrintAllPaths {
+public class mazePrintAllPaths2 {
     public static void main(String[] args) {
         int m = 2, n = 2;
         printAllPaths(0, 0, m, n, "");

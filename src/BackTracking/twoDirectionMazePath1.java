@@ -1,4 +1,4 @@
-public class twoDirectionMazePath {
+public class twoDirectionMazePath1 {
     public static void main(String[] args) {
         int m = 4, n = 4;
         System.out.println("The number of paths is: " + printAllPaths(0, 0, m, n));
